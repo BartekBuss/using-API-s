@@ -7,10 +7,10 @@ def download_rate(currency):
         data = response.json()
         return data['rates'][0]['mid']
     else:
-        print('Błąd podczas pobierania danych z API')
+        print(f'Błąd podczas pobierania danych z API o {currency}')
         return None
     
-def gold_rate():
+def download_gold_rate():
     url = "http://api.nbp.pl/api/cenyzlota/?format=json"
     response = requests.get(url)
     if response.status_code == 200:
@@ -23,18 +23,39 @@ def gold_rate():
 #-------------------------------------------------------------------
 
 if __name__ == "__main__":
-    print("Aktualne kursy walut:")
     print()
+    print('Rozpoczynam pobieranie danych...')
+
     usd = download_rate('usd')
     eur = download_rate('eur')
-    gold = gold_rate()
+    chf = download_rate('chf')
+    gbp = download_rate('gbp')
+    jpy = download_rate('jpy')
+    czk = download_rate('czk')
+    dkk = download_rate('dkk')
+    cny = download_rate('cny')
+    gold = download_gold_rate()
+
+    print()
+    print("Aktualne kursy:")
+    print()
 
     if usd:
-        print(f"PLN do USD to: {usd}")
-        print()
+        print(f"PLN/USD: {usd}")
     if eur:
-        print(f"PLN do EUR to: {eur}")
-        print()
+        print(f"PLN/EUR: {eur}")
+    if chf:
+        print(f'PLN/CHF: {chf}')
+    if gbp:
+        print(f'PLN/GBP: {gbp}')
+    if jpy:
+        print(f'PLN/JPY: {jpy}')
+    if czk:
+        print(f'PLN/CZK: {czk}')
+    if dkk:
+        print(f'PLN/DKK: {dkk}')
+    if cny:
+        print(f'PLN/CNY: {cny}')
     if gold:
         print(f"Cena 1g złota w NBP to: {gold}")
-        print()
+    print()
