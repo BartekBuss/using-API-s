@@ -17,7 +17,7 @@ def download_gold_rate():
         data = response.json()
         return data[0]['cena']
     else:
-        print('Błąd podczas pobierania danych z API')
+        print('Błąd podczas pobierania danych z API o cenie złota')
         return None
 
 #-------------------------------------------------------------------
@@ -58,4 +58,6 @@ if __name__ == "__main__":
         print(f'PLN/CNY: {cny}')
     if gold:
         print(f"Cena 1g złota w NBP to: {gold}")
+        if gold < 250.0:
+            print('Tanio! KUPUJ!')
     print()
