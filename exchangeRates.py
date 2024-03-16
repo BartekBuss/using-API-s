@@ -1,24 +1,30 @@
 import requests
 
 def download_rate(currency):
-    url = f"https://api.nbp.pl/api/exchangerates/rates/a/{currency}/?format=json"
-    response = requests.get(url)
-    if response.status_code == 200:
-        data = response.json()
-        return data['rates'][0]['mid']
-    else:
-        print(f'Błąd podczas pobierania danych z API o {currency}')
-        return None
+    try:
+        url = f"https://api.nbp.pl/api/exchangerates/rates/a/{currency}/?format=json"
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = response.json()
+            return data['rates'][0]['mid']
+        else:
+            print(f'Błąd podczas pobierania danych z API o {currency}')
+            return None
+    except:
+        print('Brak połączenia z internetem')
     
 def download_gold_rate():
-    url = "http://api.nbp.pl/api/cenyzlota/?format=json"
-    response = requests.get(url)
-    if response.status_code == 200:
-        data = response.json()
-        return data[0]['cena']
-    else:
-        print('Błąd podczas pobierania danych z API o cenie złota')
-        return None
+    try:    
+        url = "http://api.nbp.pl/api/cenyzlota/?format=json"
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = response.json()
+            return data[0]['cena']
+        else:
+            print('Błąd podczas pobierania danych z API o cenie złota')
+            return None
+    except:
+        print('Brak połączenia z internetem')
 
 #-------------------------------------------------------------------
 
@@ -37,13 +43,13 @@ if __name__ == "__main__":
     gold = download_gold_rate()
 
     print()
-    print("Aktualne kursy:")
+    print('Aktualne kursy NBP:')
     print()
 
     if usd:
-        print(f"PLN/USD: {usd}")
+        print(f'PLN/USD: {usd}')
     if eur:
-        print(f"PLN/EUR: {eur}")
+        print(f'PLN/EUR: {eur}')
     if chf:
         print(f'PLN/CHF: {chf}')
     if gbp:
@@ -57,7 +63,10 @@ if __name__ == "__main__":
     if cny:
         print(f'PLN/CNY: {cny}')
     if gold:
-        print(f"Cena 1g złota w NBP to: {gold}")
+        oz = float(gold)
+        oz *= 31.1
+        print(f'Cena 1g złota w NBP to: {gold} zł')
+        print(f'Cena 1 oz to: {round(oz, 2)} zł')
         if gold < 250.0:
             print('Tanio! KUPUJ!')
     print()
