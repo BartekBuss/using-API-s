@@ -47,25 +47,25 @@ if __name__ == "__main__":
     print()
 
     if usd:
-        print(f'PLN/USD: {usd}')
+        print(f'USD/PLN: {usd}')
     if eur:
-        print(f'PLN/EUR: {eur}')
+        print(f'EUR/PLN: {eur}')
     if chf:
-        print(f'PLN/CHF: {chf}')
+        print(f'CHF/PLN: {chf}')
     if gbp:
-        print(f'PLN/GBP: {gbp}')
+        print(f'GBP/PLN: {gbp}')
     if jpy:
-        print(f'PLN/JPY: {jpy}')
+        print(f'JPY/PLN: {jpy}')
     if czk:
-        print(f'PLN/CZK: {czk}')
+        print(f'CZK/PLN: {czk}')
     if dkk:
-        print(f'PLN/DKK: {dkk}')
+        print(f'DKK/PLN: {dkk}')
     if cny:
-        print(f'PLN/CNY: {cny}')
+        print(f'CNY/PLN: {cny}')
     if gold:
         oz = float(gold)
         oz *= 31.1
-        print(f'Cena 1g złota w NBP to: {gold} zł')
+        print(f'Cena 1g złota w NBP to: {round(gold, 2)} zł')
         print(f'Cena 1 oz to: {round(oz, 2)} zł')
         if gold < 250.0:
             print('Tanio! KUPUJ!')
